@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+  <!-- Navbar -->
+  <nav class="bg-green-600 text-white flex justify-between items-center px-8 py-3 shadow-md">
+    <div class="flex items-center space-x-3">
+      <img src="{% static 'images/1.png' %}" alt="Logo" class="h-8 w-auto">
+      <span class="font-bold text-lg">My Grocery Buddy</span>
+    </div>
+    <ul class="flex space-x-6 items-center">
+       {% comment %} <li><a href="{% url 'home' %}" class="hover:text-gray-200">Home</a></li>
+      <li><a href="{% url 'shop' %}" class="hover:text-gray-200">Shop</a></li>
+      <li><a href="{% url 'categories' %}" class="hover:text-gray-200">Categories</a></li>  {% endcomment %}
+      <li><a href="{% url 'dashboard' %}" class="hover:text-gray-200 font-semibold">Dashboard</a></li>
+      <li><a href="{% url 'logout' %}" class="hover:text-gray-200">Logout</a></li>
+      <li class="flex items-center bg-green-700 px-3 py-1 rounded-full space-x-2">
+        <span class="material-icons text-sm"><i class='bx  bx-user'></i> </span>
+        <span>{{ user.username }}</span>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Welcome Section -->
+  <section class="bg-green-700 text-white text-center py-6 mt-4 mx-6 rounded-xl">
+    <h2 class="text-2xl font-semibold">Welcome back, {{ user.username }}!</h2>
+    <p class="text-gray-100 mt-2">Here’s a summary of your latest grocery list</p>
+  </section>
+
+  <!-- Summary Cards -->
+  <div class="grid md:grid-cols-3 gap-6 mx-6 my-10">
+    <div class="bg-green-500 text-white text-center py-6 rounded-lg shadow-md">
+      <p class="text-lg">Most Recent Item</p>
+      <h3 class="text-2xl font-bold mt-2">{{ most_recent_item }}</h3>
+    </div>
+
+    <div class="bg-green-500 text-white text-center py-6 rounded-lg shadow-md">
+      <p class="text-lg">Total Entries</p>
+      <h3 class="text-2xl font-bold mt-2">{{ total_entries }}</h3>
+    </div>
+
+    <div class="bg-green-500 text-white text-center py-6 rounded-lg shadow-md">
+      <p class="text-lg">Most Frequent Item(s)</p>
+      <h3 class="text-2xl font-bold mt-2">{{ most_frequent }}</h3>
+    </div>
+  </div>
+
+  <!-- Grocery Table -->
+  <div class="bg-green-600 text-white mx-6 p-6 rounded-lg shadow-lg overflow-x-auto">
+    <table class="w-full border border-gray-700 text-left">
+      <thead>
+        <tr class="bg-black uppercase text-sm">
+          <th class="py-3 px-4 border border-green-700">Item</th>
+          <th class="py-3 px-4 border border-green-700">Quantity</th>
+          <th class="py-3 px-4 border border-green-700">Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in grocery_items %}
+        <tr class="hover:bg-gray-800 transition">
+          <td class="py-3 px-4 border border-gray-700">{{ item.name }}</td>
+          <td class="py-3 px-4 border border-gray-700">{{ item.quantity }}</td>
+          <td class="py-3 px-4 border border-gray-700">{{ item.category }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="3" class="text-center py-3 text-gray-400">No grocery items added yet.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-green-600 text-center text-white py-4 mt-10">
+    <p>© 2025 My Grocery Buddy | Designed by Naomi & Alinda | All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
