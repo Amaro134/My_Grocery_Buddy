@@ -1,0 +1,332 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Grocery Buddy | Login Page</title>
+
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+      background-color: #f9fafb;
+    }
+
+    /* Left Section */
+    .left-section {
+      flex: 1;
+      position: relative;
+      background: #f0f4f3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .left-section h1 {
+      font-size: 2rem;
+      color: #1b5e20;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .left-section p {
+      color: #2e7d32;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    .left-section img {
+      width: 600px;
+      max-width: 500px;
+      height: 500px;
+      opacity: 0.9;
+      border-radius: 16px;
+      transition: transform 0.4s ease;
+    }
+
+    .left-section img:hover {
+      transform: scale(1.03);
+    }
+
+    /* Right Section (Form) */
+    .right-section {
+      flex: 1;
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+    }
+
+    .logo {
+      width: 80px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .welcome {
+      color: #2e7d32;
+    }
+
+    .brand {
+      color: #FFD700;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .password-field {
+      position: relative;
+    }
+
+    .toggle-password {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      border: none;
+      background: none;
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+    }
+
+    .toggle-password i {
+      font-size: 1.4rem;
+      color: #2e7d32;
+    }
+
+    .toggle-password:hover i {
+      color: #ffd700;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #45a049;
+      box-shadow: 0 0 5px rgba(69, 160, 73, 0.4);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #45a049;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background-color: #ffd700;
+      color: #1b5e20;
+      transform: translateY(-2px);
+    }
+
+    .extra-links {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 0.9rem;
+    }
+
+    .extra-links a {
+      color: #45a049;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .extra-links a:hover {
+      color: #ffd700;
+    }
+
+    /* Message Styles */
+    .messages {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+    .messages div {
+      padding: 10px 12px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    .messages .error {
+      background-color: #fde2e2;
+      color: #b91c1c;
+    }
+
+    .messages .success {
+      background-color: #d1fae5;
+      color: #065f46;
+    }
+
+    /* Field Error Styling (RED TEXT) */
+    .field-error {
+      color: #b91c1c;
+      font-size: 0.9rem;
+      margin-top: -8px;
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    /* Red Border for Invalid Fields */
+    .input-error {
+      border-color: #b91c1c !important;
+      box-shadow: 0 0 5px rgba(185, 28, 28, 0.4);
+    }
+
+    /* Shake Animation */
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-4px); }
+      50% { transform: translateX(4px); }
+      75% { transform: translateX(-4px); }
+      100% { transform: translateX(0); }
+    }
+
+    .shake {
+      animation: shake 0.3s ease-in-out;
+    }
+
+    @media (max-width: 900px) {
+      body {
+        flex-direction: column;
+      }
+      .left-section, .right-section {
+        flex: none;
+        width: 100%;
+        height: 50vh;
+      }
+      .left-section h1 {
+        font-size: 1.6rem;
+      }
+      .left-section p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+ <div class="left-section">
+    <h1>Enter your account and</h1>
+    <p>Discover new experiences with My Grocery Buddy</p>
+    <img src="{% static 'images/10 Grocery Shopping Habits You Need to Change ASAP.jpeg' %}" alt="Grocery Image">
+  </div>
+
+  <div class="right-section">
+    <img src="{% static 'images/2.png' %}" alt="Logo" class="logo">
+    <h2>
+      <span class="welcome">Welcome to</span> 
+      <span class="brand">My Grocery Buddy</span>
+    </h2>
+
+    <form method="post">
+      {% csrf_token %}
+
+      <!-- Email Input -->
+      <div>
+        <input type="text"
+               id="email"
+               name="email"
+               placeholder="Enter your email"
+               class="{% if email_error %}input-error shake{% endif %}"
+               value="{{ email_value }}">
+        {% if email_error %}
+          <p class="field-error">{{ email_error }}</p>
+        {% endif %}
+      </div>
+
+      <!-- Password Input -->
+      <div class="password-field">
+        <input type="password"
+               id="password"
+               name="password"
+               placeholder="Enter your password"
+               class="{% if password_error %}input-error shake{% endif %}">
+        <button type="button"
+                class="toggle-password"
+                data-target="password"
+                aria-label="Toggle password visibility">
+          <i class='bx bx-show'></i>
+        </button>
+        {% if password_error %}
+          <p class="field-error">{{ password_error }}</p>
+        {% endif %}
+      </div>
+
+      <button type="submit">Login</button>
+
+      <div class="extra-links">
+        <p>Don’t have an account? <a href="{% url 'users:register' %}">Sign Up</a></p>
+        <p><a href="#">Forgot Password?</a></p>
+      </div>
+    </form>
+
+  </div>
+
+<script>
+  document.querySelectorAll('.toggle-password').forEach((button) => {
+    const targetId = button.dataset.target;
+    const input = document.getElementById(targetId);
+    const icon = button.querySelector('i');
+    if (!input || !icon) return;
+
+    button.addEventListener('click', () => {
+      const isPassword = input.type === 'password';
+      input.type = isPassword ? 'text' : 'password';
+      icon.classList.toggle('bx-show', !isPassword);
+      icon.classList.toggle('bx-hide', isPassword);
+    });
+  });
+</script>
+</body>
+</html>

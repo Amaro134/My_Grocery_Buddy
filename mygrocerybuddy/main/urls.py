@@ -3,7 +3,9 @@ from . import views
 # Define the URL patterns for the main app
 
 urlpatterns = [
+    path('home/',  views.homePage, name='home'),
     path('', views.landingPage, name='landingpage'), 
-    path('home/',  views.homePage, name='homepage'),
+    path('profile', views.profilePage, name='profile')
+    
 
 ]

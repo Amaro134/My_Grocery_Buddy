@@ -6,3 +6,6 @@ def landingPage(request):
 
 def homePage(request):
     return render(request, 'home.html')
+
+def profilePage(request):
+    return render (request, 'profile.html')
