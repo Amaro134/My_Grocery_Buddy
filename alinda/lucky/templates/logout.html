@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logged Out - My Grocery Buddy</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .logout-container {
+            background-color: #ffffff;
+            padding: 40px 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .logo-box {
+            width: 80px;
+            height: 80px;
+            background-color: #4CAF50;
+            border-radius: 16px;
+            margin: 0 auto 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+        .logo-leaf {
+            font-size: 32px;
+            margin-bottom: 2px;
+            filter: brightness(1.2);
+        }
+        .logo-text {
+            color: white;
+            font-size: 8px;
+            font-weight: 600;
+            text-transform: lowercase;
+            letter-spacing: 0.3px;
+            line-height: 1.1;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .btn-primary {
+            background-color: #4CAF50;
+            border: none;
+            padding: 12px 30px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #45a049;
+        }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 14px;
+        }
+        body {
+            padding-bottom: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="logout-container">
+        <div class="logo-box">
+            <div class="logo-leaf">🌿</div>
+            <div class="logo-text">my grocery<br>buddy</div>
+        </div>
+        
+        <h2>You have been logged out!</h2>
+        <p>Thank you for using My Grocery Buddy.</p>
+        
+        <a href="{% url 'lucky:login' %}" class="btn btn-primary">
+            Log In Again
+        </a>
+    </div>
+    
+    <footer class="footer">
+        <div class="container">
+            <p class="mb-0">&copy; {% now "Y" %} My Grocery Buddy. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
