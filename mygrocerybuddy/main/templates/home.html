@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Grocery Buddy - Home</title>
 
-  
   <style>
     * {
       margin: 0;
@@ -65,7 +64,7 @@
     header nav a:hover {
       color: #ffd700;
     }
-    
+
     .logout-form {
       display: inline;
     }
@@ -88,7 +87,95 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 16px rgba(0,0,0,0.2);
     }
-  
+
+    /* Profile photo in navbar */
+    .nav-profile-pic {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #ffd700;
+      cursor: pointer;
+      margin-left: 15px;
+      transition: transform 0.3s;
+    }
+
+    .nav-profile-pic:hover {
+      transform: scale(1.1);
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+      background: #fff;
+      width: 400px;
+      margin: 8% auto;
+      padding: 25px;
+      border-radius: 12px;
+      position: relative;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .close-btn {
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    .modal-profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #45a049;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+
+    .upload-btn {
+      display: inline-block;
+      background-color: #45a049;
+      padding: 8px 15px;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      margin-bottom: 15px;
+    }
+
+    .upload-btn:hover {
+      background-color: #2e7d32;
+    }
+
+    .save-btn {
+      background-color: #45a049;
+      padding: 10px 18px;
+      border-radius: 8px;
+      color: white;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 15px;
+    }
+
+    .save-btn:hover {
+      background-color: #2e7d32;
+    }
 
     /* Banner */
     .banner {
@@ -110,127 +197,15 @@
       opacity: 0.9;
     }
 
-    /* Categories Section */
-    .categories {
-      padding: 60px 10%;
-    }
-
-    .categories h2 {
-      text-align: center;
-      font-size: 2rem;
-      color: #2e7d32;
-      margin-bottom: 40px;
-    }
-
-    .category-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-
-    .category-card {
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      width: 150px;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-      cursor: pointer;
-    }
-
-    .category-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    }
-
-    .category-card img {
-      width: 60px;
-      height: 60px;
-      margin-bottom: 10px;
-    }
-
-    /* Products Section */
-    .products {
-      padding: 60px 10%;
-      background-color: #fff;
-    }
-
-    .products h2 {
-      text-align: center;
-      font-size: 2rem;
-      color: #2e7d32;
-      margin-bottom: 40px;
-    }
-
-    .product-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-
-    .product-card {
-      background: #f1f5f9;
-      padding: 20px;
-      border-radius: 12px;
-      width: 200px;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .product-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    }
-
-    .product-card img {
-      width: 120px;
-      height: 120px;
-      margin-bottom: 10px;
-      border-radius: 8px;
-    }
-
-    .product-card h3 {
-      font-size: 1.1rem;
-      color: #2e7d32;
-      margin-bottom: 8px;
-    }
-
-    .product-card p {
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: #2e7d32;
-    }
-
-    .product-card .btn {
-      display: inline-block;
-      background-color: #45a049;
-      color: white;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-weight: 500;
-      text-decoration: none;
-      transition: background 0.3s;
-    }
-
-    .product-card .btn:hover {
-      background-color: #ffd700;
-      color: #1b5e20;
-    }
-
-    /* Features Section */
+    /* Features */
     .features {
       padding: 60px 10%;
     }
-
     .features h2 {
       text-align: center;
-      font-size: 2rem;
-      color: #2e7d32;
+      font-size: 1.8rem;
       margin-bottom: 40px;
+      color: #2e7d32;
     }
 
     .feature-grid {
@@ -299,69 +274,46 @@
         gap: 10px;
       }
 
-      header .search-bar {
-        width: 80%;
-      }
-
-      .category-grid, .product-grid, .feature-grid {
+      .feature-grid {
         flex-direction: column;
         align-items: center;
       }
     }
+
   </style>
 </head>
 
 <body>
+
   <!-- Header / Navigation -->
   <header>
-  <div class="logo">
-    <img src="{% static 'images/1.png' %}" alt="Grocery Buddy Logo">
-    <span>My Grocery Buddy</span>
-  </div>
-  <nav>
-    <a href="{% url 'main:home' %}">Home</a>
-    <a href="{% url 'grocery:list_items' %}">My Grocery List</a>
-    {% comment %} <a href="{% url 'profile' %}">Profile</a> {% endcomment %}
-    <form method="post" action="{% url 'users:logout' %}" class="logout-form">
-      {% csrf_token %}
-      <button type="submit" class="logout-btn">Logout</button>
-    </form>
-  </nav>
- 
-</header>
+    <div class="logo">
+      <img src="{% static 'images/1.png' %}" alt="Grocery Buddy Logo">
+      <span>My Grocery Buddy</span>
+    </div>
 
+    <nav>
+      <a href="{% url 'main:home' %}">Home</a>
+      <a href="{% url 'grocery:list_items' %}">My Grocery List</a>
 
-  <!-- Banner / Featured Section -->
+      <!-- Profile photo -->
+      <img id="openProfileModal"
+           src="{{ request.user.profile.image.url|default:'/static/images/default-profile.png' }}"
+           class="nav-profile-pic"
+           alt="Profile">
+
+      <form method="post" action="{% url 'users:logout' %}" class="logout-form">
+        {% csrf_token %}
+        <button type="submit" class="logout-btn">Logout</button>
+      </form>
+    </nav>
+  </header>
+
+  <!-- Banner -->
   <section class="banner">
     <h2>Weekly Shopping & Saving Smart</h2>
     <p>Easy grocery shopping made simple with My Grocery Buddy!</p>
   </section>
-
-  <!-- Categories Section -->
-  <section class="categories">
-    <h2>Categories</h2>
-    <div class="category-grid">
-      <div class="category-card">
-        <img src="{% static 'images/Basket full of vegetables isolated on transparent background _ Premium AI-generated PSD.jpeg' %}" alt="Fruits">
-        <p>Fruits</p>
-      </div>
-      <div class="category-card">
-        <img src="{% static 'images/Inside Erewhon - Beverly Hills Most Aesthetic Grocery Store”.jpeg' %}" alt="Vegetables">
-        <p>Vegetables</p>
-      </div>
-      <div class="category-card">
-        <img src="{% static 'images/Unleash Your Style_ Discover the World of Fashion.jpeg' %}" alt="Snacks">
-        <p>Snacks</p>
-      </div>
-      <div class="category-card">
-        <img src="{% static 'images/Dairy products in the supermarket.jpeg' %}" alt="Dairy">
-        <p>Dairy</p>
-      </div>
-    </div>
-  </section>
-
- 
-
 
   <!-- Features Section -->
   <section class="features">
@@ -377,14 +329,52 @@
         <h3>Budget Tracker</h3>
         <p>Track your spending and stay within your grocery budget.</p>
       </div>
-     
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
     <p>&copy; {{ year|default:2025 }} Grocery Buddy | Designed by Naomi and Alinda.</p>
-   
   </footer>
+
+  <!-- Profile Modal -->
+  <div id="profileModal" class="modal">
+    <div class="modal-content">
+      <span id="closeProfileModal" class="close-btn">&times;</span>
+      <h2>Edit Profile</h2>
+      <div style="text-align:center;">
+        <img src="{{ request.user.profile.image.url|default:'/static/images/default-profile.png' }}" class="modal-profile-pic">
+        <form method="POST" action="{% url 'main:update_profile' %}" enctype="multipart/form-data">
+          {% csrf_token %}
+          <label class="upload-btn">Change Photo
+            <input type="file" name="image" accept="image/*" hidden>
+          </label>
+          <button type="submit" class="save-btn">Save Changes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal JS -->
+  <script>
+    const modal = document.getElementById("profileModal");
+    const openBtn = document.getElementById("openProfileModal");
+    const closeBtn = document.getElementById("closeProfileModal");
+
+    openBtn.onclick = function() {
+      modal.style.display = "block";
+    }
+
+    closeBtn.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(e) {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+
 </body>
 </html>
