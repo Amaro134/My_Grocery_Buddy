@@ -72,6 +72,10 @@
       max-width: 400px;
       border-radius: 12px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      transition: transform 0.4s ease;
+    }
+    .hero-right img:hover {
+      transform: scale(1.03);
     }
 
     .btn {
@@ -146,7 +150,7 @@
 
     /* Call-to-Action Section */
     .cta-section {
-      background: linear-gradient(135deg, #45a049, #6ed3b8);
+      background: linear-gradient(135deg, #45a049, #5cd65c);
       color: white;
       text-align: center;
       padding: 60px 20px;
@@ -237,7 +241,7 @@
       <img src="{% static 'images/1.png' %}" alt="My Grocery Buddy Logo" class="hero-logo">
       <h1>Welcome to <span>My Grocery Buddy!</span></h1>
       <p class="tagline">Smart Shopping Simplified</p>
-      <a href="{% url 'login' %}" class="btn">Get Started</a>
+      <a href="{% url 'users:login' %}" class="btn">Get Started</a>
     </div>
 
     <div class="hero-right">
@@ -250,21 +254,20 @@
     <h2>What We Offer</h2>
     <div class="offer-grid">
       <div class="offer-card">
-        <img src="{% static 'images/download (4).jpeg' %}" alt="Smart Grocery Management Icon">
+        <img src="{% static 'images/Free Printable Grocery Budget Tracker.jpeg' %}" alt="Smart Grocery Management Icon">
         <h3>Smart Grocery Management</h3>
         <p>Manage your grocery lists efficiently and avoid wastage.</p>
       </div>
 
       <div class="offer-card">
-        <img src="{% static 'images/download (6).jpeg' %}" alt="Statistics Icon">
+        <img src="{% static 'images/Canadian Grocery Shoppers Hungry for Omni-Channel Savings (Statistics).jpeg' %}" alt="Statistics Icon">
         <h3>Statistics</h3>
         <p>Track your expenditures and stay on budget.</p>
       </div>
-
       <div class="offer-card">
-        <img src="{% static 'images/Join the Drifting Towards Simplicity Community.jpeg' %}" alt="Community Icon">
-        <h3>Community Support</h3>
-        <p>Join a safe space to share tips, recipes, and experiences.</p>
+        <img src="{% static 'images/doen.jpeg' %}" alt="Categories Icon">
+        <h3>Categories</h3>
+        <p>Organize your groceries into categories for easy access.</p>
       </div>
     </div>
   </section>
@@ -272,18 +275,18 @@
   <!-- Call-to-Action Section -->
   <section class="cta-section">
     <h2>Ready to Simplify Your Shopping?</h2>
-    <a href="{% url 'register' %}" class="cta-btn">Sign Up Now</a>
+    <a href="{% url 'users:register' %}" class="cta-btn">Sign Up Now</a>
   </section>
 
   <!-- Footer Section -->
   <footer>
     <p>&copy; {{ year|default:2025 }} My Grocery Buddy | Designed by Naomi and Alinda.</p>
-    <div>
+    {% comment %} <div>
       <a href="#">Facebook</a> |
       <a href="#">Instagram</a> |
       <a href="#">Twitter</a> |
       <a href="#">LinkedIn</a>
-    </div>
+    </div> {% endcomment %}
   </footer>
 </body>
 </html>
