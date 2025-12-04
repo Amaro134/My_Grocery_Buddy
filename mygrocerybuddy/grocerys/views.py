@@ -14,6 +14,7 @@ def homePage(request):
     return redirect('users:login')
 
 
+
 @login_required
 def grocery_list(request):
     filter_type = request.GET.get('filter', 'all')
