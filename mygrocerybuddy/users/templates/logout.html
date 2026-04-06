@@ -1,0 +1,199 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logout | My Grocery Buddy</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Make the body a vertical structure */
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: #f8f9fa;
+    }
+
+    /* The container that holds left & right sections */
+    .main-container {
+      flex: 1; /* Allows this section to take remaining space above footer */
+      display: flex;
+    }
+
+    /* Left Section */
+    .left-section {
+      flex: 1;
+      background-color: #f0f4f3;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .left-section h1 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      color: #2e7d32;
+    }
+
+    .left-section p {
+      font-size: 1.1rem;
+      color: #555;
+      max-width: 320px;
+      margin-bottom: 20px;
+    }
+
+    .left-section img {
+      width: 600px;
+      max-width: 500px;
+      height: 450px;
+      border-radius: 16px;
+      opacity: 0.9;
+      transition: transform 0.4s ease;
+    }
+
+    .left-section img:hover {
+      transform: scale(1.03);
+    }
+
+    /* Right Section */
+    .right-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+    }
+
+    .logo {
+      width: 80px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 15px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #2e7d32;
+    }
+
+    .logout-box {
+      background-color: #fff;
+      padding: 30px 35px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .logout-box p {
+      color: #4b5563;
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background-color: #45a049;
+      color: white;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.3s, transform 0.2s;
+      margin-top: 15px;
+    }
+
+    .btn:hover {
+      background-color: #FFD700;
+      color: #1b5e20;
+      transform: translateY(-2px);
+    }
+
+    /* Footer stays at bottom */
+    footer {
+      background-color: #388e3c;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 0.95rem;
+      margin-top: auto;
+    }
+
+    footer a {
+      color: #ffd700;
+      margin: 0 10px;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    /* Responsive */
+    @media(max-width: 900px) {
+      .main-container {
+        flex-direction: column;
+      }
+      .left-section, .right-section {
+        width: 100%;
+        padding: 30px;
+      }
+      .left-section img {
+        max-width: 80%;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Main Content Wrapper -->
+  <div class="main-container">
+
+    <!-- Left Section -->
+    <div class="left-section">
+      <h1>Thank You for Visiting!</h1>
+      <p>You have successfully logged out of My Grocery Buddy.</p>
+      <img src="{% static 'images/10 Grocery Shopping Habits You Need to Change ASAP.jpeg' %}" alt="Grocery Image">
+    </div>
+
+    <!-- Right Section -->
+    <div class="right-section">
+      <img src="{% static 'images/2.png' %}" alt="Logo" class="logo">
+
+      <div class="logout-box">
+        <h2>Goodbye!</h2>
+        <p>We hope to see you again soon.</p>
+        <p>Click below to return to the login page.</p>
+
+        <a href="{% url 'users:login' %}" class="btn">Return to Login</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; {{ year|default:2025 }} Grocery Buddy | Designed by Naomi and Alinda.</p>
+  </footer>
+
+</body>
+</html>

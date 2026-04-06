@@ -1,0 +1,292 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Grocery Buddy</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100vh;
+      padding: 0 10%;
+      background: linear-gradient(135deg, #5cd65c, #45a049);
+      color: white;
+      gap: 2rem;
+    }
+
+    .hero-left {
+      flex: 1;
+      text-align: left;
+    }
+
+    .hero-logo {
+      width: 120px;
+      height: auto;
+      margin-bottom: 1rem;
+      border-radius: 50%;
+      background-color: white;
+      padding: 10px;
+    }
+
+    .hero-left h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-left h1 span {
+      color: #ffd700; /* gold accent */
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-right {
+      flex: 0.6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-right img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      transition: transform 0.4s ease;
+    }
+    .hero-right img:hover {
+      transform: scale(1.03);
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #fff;
+      color: #2e7d32;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 0.9rem 2rem;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #ffd700;
+      color: #1b5e20;
+      transform: translateY(-3px);
+    }
+
+    /* Offer Section */
+    .offer-section {
+      padding: 80px 10%;
+      text-align: center;
+      background-color: #fff;
+    }
+
+    .offer-section h2 {
+      font-size: 2rem;
+      margin-bottom: 50px;
+      color: #2e7d32;
+    }
+
+    .offer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .offer-card {
+      background: #f1f5f9;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      flex: 1 1 250px;
+      max-width: 300px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .offer-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .offer-card img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 20px;
+    }
+
+    .offer-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #2e7d32;
+    }
+
+    .offer-card p {
+      font-size: 1rem;
+      opacity: 0.8;
+    }
+
+    /* Call-to-Action Section */
+    .cta-section {
+      background: linear-gradient(135deg, #45a049, #5cd65c);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .cta-section h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background-color: #fff;
+      color: #2e7d32;
+      font-weight: 600;
+      padding: 16px 32px;
+      border-radius: 30px;
+      text-decoration: none;
+      border: 2px solid #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .cta-btn:hover {
+      background-color: #ffd700;
+      color: #1b5e20;
+      transform: translateY(-3px);
+    }
+
+    /* Footer */
+    footer {
+      background-color: #388e3c;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 0.95rem;
+    }
+
+    footer a {
+      color: #ffd700;
+      margin: 0 10px;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 3rem 1.5rem;
+        height: auto;
+      }
+
+      .hero-right {
+        margin-top: 2rem;
+      }
+
+      .hero-left h1 {
+        font-size: 2rem;
+      }
+
+      .offer-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .cta-section h2 {
+        font-size: 1.5rem;
+      }
+
+      .cta-btn {
+        padding: 12px 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-left">
+      <img src="{% static 'images/1.png' %}" alt="My Grocery Buddy Logo" class="hero-logo">
+      <h1>Welcome to <span>My Grocery Buddy!</span></h1>
+      <p class="tagline">Smart Shopping Simplified</p>
+      <a href="{% url 'users:login' %}" class="btn">Get Started</a>
+    </div>
+
+    <div class="hero-right">
+      <img src="{% static 'images/download (13).jpeg' %}" alt="Grocery Shopping Illustration">
+    </div>
+  </section>
+
+  <!-- Offer Section -->
+  <section class="offer-section">
+    <h2>What We Offer</h2>
+    <div class="offer-grid">
+      <div class="offer-card">
+        <img src="{% static 'images/Free Printable Grocery Budget Tracker.jpeg' %}" alt="Smart Grocery Management Icon">
+        <h3>Smart Grocery Management</h3>
+        <p>Manage your grocery lists efficiently and avoid wastage.</p>
+      </div>
+
+      <div class="offer-card">
+        <img src="{% static 'images/Canadian Grocery Shoppers Hungry for Omni-Channel Savings (Statistics).jpeg' %}" alt="Statistics Icon">
+        <h3>Statistics</h3>
+        <p>Track your expenditures and stay on budget.</p>
+      </div>
+      <div class="offer-card">
+        <img src="{% static 'images/doen.jpeg' %}" alt="Categories Icon">
+        <h3>Categories</h3>
+        <p>Organize your groceries into categories for easy access.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call-to-Action Section -->
+  <section class="cta-section">
+    <h2>Ready to Simplify Your Shopping?</h2>
+    <a href="{% url 'users:register' %}" class="cta-btn">Sign Up Now</a>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; {{ year|default:2025 }} My Grocery Buddy | Designed by Naomi and Alinda.</p>
+    {% comment %} <div>
+      <a href="#">Facebook</a> |
+      <a href="#">Instagram</a> |
+      <a href="#">Twitter</a> |
+      <a href="#">LinkedIn</a>
+    </div> {% endcomment %}
+  </footer>
+</body>
+</html>
